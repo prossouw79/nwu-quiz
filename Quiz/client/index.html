@@ -5,7 +5,7 @@
   <script src="./lib/jquery.min.js"></script>
   <script src="./lib/angularjs.min.js"></script>
   <script src="./lib/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css"  href="./lib/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="./lib/fontawesome.css">
   <script src="./lib/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css">
 
@@ -63,15 +63,19 @@
 
     .listQuiz ul[dnd-list] li.background-Name {
       background-color: #FFE2F5;
-      padding-top: 26px;
-      padding-top: 26px;
+      height: 50px;
+      padding-left: 5px;
     }
 
+
+   
     .listQuiz ul[dnd-list] li.background-Description {
-      background-color: rgb(235, 255, 226);
-      padding-top: 26px;
-      padding-top: 26px;
-    }
+        background-color: rgb(235, 255, 226);
+        height: 50px;
+        padding-left: 5px;
+      }
+    
+
 
     .listQuiz .handle {
       cursor: move;
@@ -82,6 +86,22 @@
     .listQuiz .name {
       margin-left: 20px;
     }
+
+    .center {
+      text-align: center
+    }
+
+    .padded-row {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .icon-list{
+      list-style: none; 
+      text-align: center;
+      padding-inline-start: 0px;
+    }
+
   </style>
 
 </head>
@@ -90,25 +110,27 @@
 
   <div ng-app="nwuQuiz" ng-controller="nwuQuizCtrl">
     <div class="jumbotron">
-      <h2 class="display-4">Web Framework Quiz</h2>
-      <p>Match the framework icons to names and descriptions.</p>
+      <h2 class="display-4 center">Web Framework Quiz</h2>
+      <p class="center">Match the framework icons to their names and descriptions.</p>
       <strong>Note:</strong>
       <p>You might want to use your personal email, not your NWU email, as the prize is linked to an email account.
       </p>
     </div>
 
-
-
-    <div class="row">
-      <div class="col-md-2 listQuiz">
-        <ul style="list-style: none; text-align: center;">
+    <!-- Icons -->
+    <div class="row padded-row">
+      <div class="col-md-2 col-sm-1 listQuiz">
+        <h5 class="center">Icons</h5>
+        <ul class="icon-list">
           <li ng-repeat="item in models.lists.Icons.items" class="background-{{item.type}}">
             <img ng-src="./img/{{item.label}}" height="40px" style="margin-top: 5px; margin-bottom: 5px">
           </li>
         </ul>
       </div>
 
-      <div class="col-md-2 listQuiz">
+      <!-- Names -->
+      <div class="col-md-2 col-sm-2 listQuiz">
+        <h5 class="center">Names</h5>
         <ul dnd-list="models.lists.Names.items" dnd-allowed-types="models.lists.Names.allowedTypes">
           <li ng-repeat="item in models.lists.Names.items" dnd-draggable="item" dnd-type="item.type" dnd-moved="models.lists.Names.items.splice($index, 1)"
             class="background-{{item.type}}">
@@ -116,7 +138,10 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-8 listQuiz">
+
+      <!-- Descriptions -->
+      <div class="col-md-8 col-sm-9 listQuiz">
+        <h5>Descriptions</h5>
         <ul dnd-list="models.lists.Descriptions.items" dnd-allowed-types="models.lists.Descriptions.allowedTypes">
           <li ng-repeat="item in models.lists.Descriptions.items" dnd-draggable="item" dnd-type="item.type" dnd-moved="models.lists.Descriptions.items.splice($index, 1)"
             class="background-{{item.type}}">
