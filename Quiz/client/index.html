@@ -3,12 +3,11 @@
 
 <head>
   <script src="./lib/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
-  <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
+  <script src="./lib/angularjs.min.js"></script>
+  <script src="./lib/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css"  href="./lib/fontawesome.css">
+  <script src="./lib/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css">
 
   <script src="./lib/dndlists.js"></script>
   <script src="./app.js"></script>
@@ -111,7 +110,7 @@
 
       <div class="col-md-2 listQuiz">
         <ul dnd-list="models.lists.Names.items" dnd-allowed-types="models.lists.Names.allowedTypes">
-          <li ng-repeat="item in models.lists.Names.items" dnd-draggable="item" dnd-type="item.type" dnd-dragend="models.lists.Names.items.splice($index, 1)"
+          <li ng-repeat="item in models.lists.Names.items" dnd-draggable="item" dnd-type="item.type" dnd-moved="models.lists.Names.items.splice($index, 1)"
             class="background-{{item.type}}">
             {{item.label}}
           </li>
@@ -119,7 +118,7 @@
       </div>
       <div class="col-md-8 listQuiz">
         <ul dnd-list="models.lists.Descriptions.items" dnd-allowed-types="models.lists.Descriptions.allowedTypes">
-          <li ng-repeat="item in models.lists.Descriptions.items" dnd-draggable="item" dnd-type="item.type" dnd-dragend="models.lists.Descriptions.items.splice($index, 1)"
+          <li ng-repeat="item in models.lists.Descriptions.items" dnd-draggable="item" dnd-type="item.type" dnd-moved="models.lists.Descriptions.items.splice($index, 1)"
             class="background-{{item.type}}">
             {{item.label}}
           </li>

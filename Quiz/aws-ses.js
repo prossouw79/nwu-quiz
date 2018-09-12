@@ -1,6 +1,5 @@
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
-// Set the region 
 AWS.config.loadFromPath(__dirname + '/cred.json')
 
 var sendResults = function (_html, _text, _subject, _email) {

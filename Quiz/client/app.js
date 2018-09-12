@@ -2,7 +2,6 @@ var app = angular.module('nwuQuiz', ['dndLists']);
 
 angular.module("nwuQuiz")
     .controller("nwuQuizCtrl", function ($scope, $http) {
-        $scope.hostname = "ec2-34-244-170-233.eu-west-1.compute.amazonaws.com"
         $scope.models = {
             selected: null,
             lists: {
@@ -25,7 +24,7 @@ angular.module("nwuQuiz")
         $scope.getModel = function () {
             $http({
                 method: 'GET',
-                url: `http://${$scope.hostname}:3000/api/frameworkList`
+                url: `/api/frameworkList`
             }).then(function successCallback(response) {
                 console.log(`Response: ${response}`);
                 if (response.data) {
@@ -59,7 +58,7 @@ angular.module("nwuQuiz")
 
                 $scope.models.email = $scope.email;
                 $http({
-                        url: `http://${$scope.hostname}:3000/api/frameworkList`,
+                        url: `/api/frameworkList`,
                         method: "POST",
                         data: {
                             'model': $scope.models

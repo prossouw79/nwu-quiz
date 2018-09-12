@@ -28,3 +28,5 @@ build/Release
 node_modules
 
 Quiz-Backend/cred\.json
+
+Quiz/cred\.json
