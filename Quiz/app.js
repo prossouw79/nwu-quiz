@@ -59,7 +59,7 @@ angular.module("nwuQuiz")
 
                 $scope.models.email = $scope.email;
                 $http({
-                        url: 'http://localhost:3000/api/frameworkList',
+                        url: `http://${$scope.hostname}:3000/api/frameworkList`,
                         method: "POST",
                         data: {
                             'model': $scope.models
@@ -78,7 +78,4 @@ angular.module("nwuQuiz")
                     })
             }
         }
-
-
-
     });
