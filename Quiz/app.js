@@ -2,7 +2,7 @@ var app = angular.module('nwuQuiz', ['dndLists']);
 
 angular.module("nwuQuiz")
     .controller("nwuQuizCtrl", function ($scope, $http) {
-        $scope.hostname = "localhost"
+        $scope.hostname = "ec2-34-244-170-233.eu-west-1.compute.amazonaws.com"
         $scope.models = {
             selected: null,
             lists: {
@@ -22,12 +22,6 @@ angular.module("nwuQuiz")
         };
         $scope.email = "";
 
-        function init(){
-            $scope.getModel;
-        }
-
-        init()
-
         $scope.getModel = function () {
             $http({
                 method: 'GET',
@@ -43,6 +37,14 @@ angular.module("nwuQuiz")
             });
         }
 
+        function init() {
+            $scope.getModel();
+        }
+
+        init()
+
+
+
         function validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
@@ -57,12 +59,12 @@ angular.module("nwuQuiz")
 
                 $scope.models.email = $scope.email;
                 $http({
-                    url: 'http://localhost:3000/api/frameworkList',
-                    method: "POST",
-                    data: {
-                        'model': $scope.models
-                    }
-                })
+                        url: 'http://localhost:3000/api/frameworkList',
+                        method: "POST",
+                        data: {
+                            'model': $scope.models
+                        }
+                    })
                     .then(function (response) {
                         // success
                         var r = response.data;
