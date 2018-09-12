@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
+
+  <script src="./lib/dndlists.js"></script>
+  <script src="./app.js"></script>
+
+  <style>
+    .listQuiz ul[dnd-list],
+    .listQuiz ul[dnd-list]>li {
+      position: relative;
+    }
+
+    .listQuiz ul[dnd-list] {
+      min-height: 42px;
+      padding-left: 0px;
+    }
+
+    .listQuiz ul[dnd-list] .dndDraggingSource {
+      display: none;
+    }
+
+    .listQuiz ul[dnd-list] .dndPlaceholder {
+      display: block;
+      background-color: #ddd;
+      padding: 10px 15px;
+      min-height: 42px;
+    }
+
+    .listQuiz ul[dnd-list] li {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      display: block;
+      margin-bottom: -1px;
+
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .listQuiz ul[dnd-list] li dnd-nodrag {
+      display: block;
+      padding: 10px 15px;
+    }
+
+    .listQuiz ul[dnd-list] li.background-Icon {
+      text-align: center;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid black;
+    }
+
+    .listQuiz ul[dnd-list] li.background-Name {
+      background-color: #FFE2F5;
+      padding-top: 26px;
+      padding-top: 26px;
+    }
+
+    .listQuiz ul[dnd-list] li.background-Description {
+      background-color: rgb(235, 255, 226);
+      padding-top: 26px;
+      padding-top: 26px;
+    }
+
+    .listQuiz .handle {
+      cursor: move;
+      position: absolute;
+      top: 14px;
+    }
+
+    .listQuiz .name {
+      margin-left: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div ng-app="nwuQuiz" ng-controller="nwuQuizCtrl">
+    <div class="jumbotron">
+      <h2 class="display-4">Web Framework Quiz</h2>
+      <p>Match the framework icons to names and descriptions.</p>
+      <strong>Note:</strong>
+      <p>You might want to use your personal email, not your NWU email, as the prize is linked to an email account.
+      </p>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-2 listQuiz">
+        <ul style="list-style: none; text-align: center;">
+          <li ng-repeat="item in models.lists.Icons.items" class="background-{{item.type}}">
+            <img ng-src="./img/{{item.label}}" height="40px" style="margin-top: 5px; margin-bottom: 5px">
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 listQuiz">
+        <ul dnd-list="models.lists.Names.items" dnd-allowed-types="models.lists.Names.allowedTypes">
+          <li ng-repeat="item in models.lists.Names.items" dnd-draggable="item" dnd-type="item.type" dnd-dragend="models.lists.Names.items.splice($index, 1)"
+            class="background-{{item.type}}">
+            {{item.label}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8 listQuiz">
+        <ul dnd-list="models.lists.Descriptions.items" dnd-allowed-types="models.lists.Descriptions.allowedTypes">
+          <li ng-repeat="item in models.lists.Descriptions.items" dnd-draggable="item" dnd-type="item.type" dnd-dragend="models.lists.Descriptions.items.splice($index, 1)"
+            class="background-{{item.type}}">
+            {{item.label}}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="col-md-4">
+          <input type="email" class="form-control" id="email" ng-model="email" placeholder="Enter email">
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary" ng-click="sendModel()">Submit</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
