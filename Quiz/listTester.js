@@ -47,7 +47,7 @@ module.exports = {
                     });
                     html += `</ol>`;
 
-                    //mailer.sendResults(html, "", "Quiz Results", "pieter@synthesis.co.za");
+                    mailer.sendResults(html, "", "Quiz Results", "pieter@synthesis.co.za");
                 }
 
 
