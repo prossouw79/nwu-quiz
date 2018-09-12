@@ -70,8 +70,8 @@ angular.module("nwuQuiz")
                         var r = response.data;
 
                         if (r.result === true) {
-                            $scope.getModel();
                             swal("Good job!", r.comment, "success");
+                            $scope.getModel();
                         } else {
                             swal("Derp!", r.comment, "warning");
                         }

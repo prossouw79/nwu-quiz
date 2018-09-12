@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// use it before all route definitions
 app.use(cors({origin: '*'}));
 
 var port = process.env.PORT || 3000; // set our port
